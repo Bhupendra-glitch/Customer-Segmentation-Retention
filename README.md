@@ -1,3 +1,4 @@
+![alt text](image.png)
 # 📊 Telco Customer Churn Classification
 
 ## 📌 Project Overview
@@ -21,6 +22,7 @@ The project includes **data analysis, feature engineering, and predictive modeli
 # 📂 Dataset Description
 
 The dataset contains information about telecom customers including demographic data, services subscribed, billing details, and churn status.
+
 
 ### Dataset Attributes
 
@@ -77,6 +79,7 @@ EDA was performed to understand:
 - Service usage patterns
 - Billing behavior
 - Factors influencing churn
+![alt text](image-1.png)
 
 Common techniques used:
 
@@ -124,12 +127,28 @@ These models were compared to find the best performing algorithm.
 
 The models were evaluated using:
 
-- Accuracy
-- Precision
-- Recall
-- F1 Score
-- Confusion Matrix
-- ROC-AUC Score
+- **Accuracy**
+- **Precision**
+- **Recall**
+- **F1 Score**
+- **Confusion Matrix**
+- **ROC-AUC Score**
+
+---
+
+# 📊Classifier
+
+- **Xgboost Classifier**
+- **LightGBM Classifier**
+- **Random Forest Classifier**
+- **Decision Tree Classifier** 
+
+---
+# Numerical features vs Numerical features w.r.t Target variable (Churn)
+![alt text](image-2.png)
+---
+
+
 
 ---
 
