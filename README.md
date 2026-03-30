@@ -174,6 +174,8 @@ This can help telecom companies:
 - Matplotlib
 - Seaborn
 - Jupyter Notebook
+- LightBGM
+- XGBoost
 
 ---
 
