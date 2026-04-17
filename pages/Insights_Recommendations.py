@@ -11,12 +11,12 @@ st.set_page_config(
 st.title("💡 Insights & Business Recommendations")
 
 # -------------------- LOAD DATA --------------------
-@st.cache_data
-def load_data():
-    df = pd.read_csv("data/telco_churn.csv")
-    return df
 
-df = load_data()
+
+@st.cache_data
+def load_data("E:\Py3\Customer-Segmentation-Retention\WA_Fn-UseC_-Telco-Customer-Churn.csv"):
+    df = pd.read_csv("E:\Py3\Customer-Segmentation-Retention\WA_Fn-UseC_-Telco-Customer-Churn.csv")
+    return df
 
 # -------------------- BASIC PREPROCESS --------------------
 df["TotalCharges"] = pd.to_numeric(df["TotalCharges"], errors="coerce")

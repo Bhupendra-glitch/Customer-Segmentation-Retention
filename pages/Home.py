@@ -111,3 +111,5 @@ B.Tech Student | Data Science Enthusiast
 
 🔗 Connect on LinkedIn | 🌐 View GitHub Project  
 """)
+
+import About_Project
