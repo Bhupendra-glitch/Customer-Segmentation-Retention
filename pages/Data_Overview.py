@@ -13,7 +13,7 @@ st.title("📊 Data Overview")
 # -------------------- LOAD DATA --------------------
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data/telco_churn.csv")  # change path if needed
+    df = pd.read_csv("WA_Fn-UseC_-Telco-Customer-Churn.csv")  # change path if needed
     return df
 
 df = load_data()

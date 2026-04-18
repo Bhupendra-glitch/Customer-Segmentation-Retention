@@ -14,8 +14,8 @@ st.title("💡 Insights & Business Recommendations")
 
 
 @st.cache_data
-def load_data("E:\Py3\Customer-Segmentation-Retention\WA_Fn-UseC_-Telco-Customer-Churn.csv"):
-    df = pd.read_csv("E:\Py3\Customer-Segmentation-Retention\WA_Fn-UseC_-Telco-Customer-Churn.csv")
+def load_data():
+    df = pd.read_csv("../WA_Fn-UseC_-Telco-Customer-Churn.csv")
     return df
 
 # -------------------- BASIC PREPROCESS --------------------

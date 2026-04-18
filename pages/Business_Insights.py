@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from utils.recommendations import generate_business_recommendations
+from recommendations import generate_business_recommendations
 
 st.title("🎯 Business Insights & Recommendations")
 
