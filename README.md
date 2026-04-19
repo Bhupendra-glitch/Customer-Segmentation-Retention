@@ -8,6 +8,7 @@ Customer churn is one of the most important problems in the telecom industry. Cu
 This project focuses on **predicting customer churn** using machine learning techniques. By identifying customers who are likely to leave, telecom companies can take proactive steps to **improve customer retention and reduce revenue loss**.
 
 The project includes **data analysis, feature engineering, and predictive modeling** to classify customers as churn or non-churn.
+link - churnpredictai.streamlit.app/
 
 ---
 
