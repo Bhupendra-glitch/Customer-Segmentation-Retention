@@ -18,7 +18,11 @@ def load_data():
     df = pd.read_csv(DATA_PATH)
     return df
 
-model = load_model("model.pkl")
+@st.cache_resource
+def get_model():
+    return load_model("model.pkl")
+
+model = get_model()
 df = load_data()
 
 # -------------------- PREPROCESS --------------------

@@ -18,8 +18,11 @@ def load_data(path):
 
 def load_model(path):
     try:
-        return joblib.load(project_path(path))
-    except (FileNotFoundError, KeyError, EOFError, ValueError, ImportError):
+        model = joblib.load(project_path(path))
+        if not hasattr(model, "feature_names_in_"):
+            raise ValueError("The saved model has no feature schema")
+        return model
+    except (FileNotFoundError, KeyError, EOFError, ValueError, ImportError, OSError):
         df = load_data(DATA_PATH)
         features = pd.get_dummies(
             df.drop(columns=["customerID", "Churn"]), drop_first=True
