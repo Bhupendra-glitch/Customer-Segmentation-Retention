@@ -2,23 +2,17 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+from utils import load_model
 
 # -------------------- PAGE CONFIG --------------------
-st.set_page_config(
-    page_title="Churn Prediction",
-    page_icon="🤖",
-    layout="wide"
-)
-
 st.title("🤖 Customer Churn Prediction")
 
 # -------------------- LOAD MODEL --------------------
 @st.cache_resource
-def load_model():
-    model = joblib.load("models/churn_model.pkl")  # update path if needed
-    return model
+def get_model():
+    return load_model("model.pkl")
 
-model = load_model()
+model = get_model()
 
 # -------------------- INPUT SECTION --------------------
 st.subheader("📝 Enter Customer Details")

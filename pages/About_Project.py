@@ -1,12 +1,6 @@
 import streamlit as st
 
 # -------------------- PAGE CONFIG --------------------
-st.set_page_config(
-    page_title="About Project",
-    page_icon="📖",
-    layout="wide"
-)
-
 # -------------------- TITLE --------------------
 st.title("📖 About This Project")
 

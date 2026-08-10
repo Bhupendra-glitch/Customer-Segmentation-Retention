@@ -5,20 +5,15 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 import plotly.express as px
+from utils import DATA_PATH
 
 # -------------------- PAGE CONFIG --------------------
-st.set_page_config(
-    page_title="Customer Segmentation",
-    page_icon="🧠",
-    layout="wide"
-)
-
 st.title("🧠 Customer Segmentation")
 
 # -------------------- LOAD DATA --------------------
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data/telco_churn.csv")  # update path if needed
+    df = pd.read_csv(DATA_PATH)
     return df
 
 df = load_data()

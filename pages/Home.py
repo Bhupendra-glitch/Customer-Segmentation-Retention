@@ -1,12 +1,6 @@
 import streamlit as st
 
 # -------------------- PAGE CONFIG --------------------
-st.set_page_config(
-    page_title="Customer Churn & Segmentation Dashboard",
-    page_icon="📊",
-    layout="wide"
-)
-
 # -------------------- HEADER --------------------
 st.title("📊 Customer Churn & Segmentation Dashboard")
 st.markdown("""
@@ -112,4 +106,3 @@ B.Tech Student | Data Science Enthusiast
 🔗 Connect on LinkedIn | 🌐 View GitHub Project  
 """)
 
-import About_Project

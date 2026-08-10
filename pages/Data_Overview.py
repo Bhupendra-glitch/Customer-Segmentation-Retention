@@ -1,19 +1,14 @@
 import streamlit as st
 import pandas as pd
+from utils import DATA_PATH
 
 # -------------------- PAGE CONFIG --------------------
-st.set_page_config(
-    page_title="Data Overview",
-    page_icon="📊",
-    layout="wide"
-)
-
 st.title("📊 Data Overview")
 
 # -------------------- LOAD DATA --------------------
 @st.cache_data
 def load_data():
-    df = pd.read_csv("WA_Fn-UseC_-Telco-Customer-Churn.csv")  # change path if needed
+    df = pd.read_csv(DATA_PATH)
     return df
 
 df = load_data()
@@ -88,7 +83,7 @@ with tab3:
 with tab4:
     st.subheader("📊 Data Types")
 
-    dtype_df = pd.DataFrame(df.dtypes, columns=["Data Type"])
+    dtype_df = pd.DataFrame(df.dtypes.astype(str), columns=["Data Type"])
     dtype_df.reset_index(inplace=True)
     dtype_df.columns = ["Column", "Data Type"]
 

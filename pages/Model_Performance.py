@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+from utils import DATA_PATH, load_model
 import matplotlib.pyplot as plt
 from sklearn.metrics import (
     accuracy_score, precision_score, recall_score, f1_score,
@@ -9,25 +10,15 @@ from sklearn.metrics import (
 )
 
 # -------------------- PAGE CONFIG --------------------
-st.set_page_config(
-    page_title="Model Performance",
-    page_icon="📊",
-    layout="wide"
-)
-
 st.title("📊 Model Performance Evaluation")
 
 # -------------------- LOAD MODEL & DATA --------------------
-@st.cache_resource
-def load_model():
-    return joblib.load("models/churn_model.pkl")
-
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data/telco_churn.csv")
+    df = pd.read_csv(DATA_PATH)
     return df
 
-model = load_model()
+model = load_model("model.pkl")
 df = load_data()
 
 # -------------------- PREPROCESS --------------------

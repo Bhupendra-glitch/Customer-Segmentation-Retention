@@ -1,13 +1,8 @@
 import streamlit as st
 import pandas as pd
+from utils import DATA_PATH
 
 # -------------------- PAGE CONFIG --------------------
-st.set_page_config(
-    page_title="Insights & Recommendations",
-    page_icon="💡",
-    layout="wide"
-)
-
 st.title("💡 Insights & Business Recommendations")
 
 # -------------------- LOAD DATA --------------------
@@ -15,8 +10,10 @@ st.title("💡 Insights & Business Recommendations")
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv("../WA_Fn-UseC_-Telco-Customer-Churn.csv")
+    df = pd.read_csv(DATA_PATH)
     return df
+
+df = load_data()
 
 # -------------------- BASIC PREPROCESS --------------------
 df["TotalCharges"] = pd.to_numeric(df["TotalCharges"], errors="coerce")

@@ -1,4 +1,6 @@
 import streamlit as st
+from pathlib import Path
+import runpy
 
 # -------------------- PAGE CONFIG --------------------
 st.set_page_config(
@@ -6,17 +8,6 @@ st.set_page_config(
     page_icon="📊",
     layout="wide"
 )
-
-# -------------------- IMPORT PAGES --------------------
-from pages.Home import show_home
-from pages.Data_Overview import show_data_overview
-from pages.Customer_Segmentation import show_segmentation
-from pages.Churn_Prediction import show_prediction
-from pages.Model_Performance import show_model_performance
-from pages.Insights_Recommendations import show_insights
-from pages.About_Project import show_about
-from pages.Business_Insights import show_business_insights
-from pages.Business_Helper import show_business_helper
 
 # -------------------- SIDEBAR --------------------
 st.sidebar.markdown("## 📊 Customer Intelligence Dashboard")
@@ -35,29 +26,16 @@ category = st.sidebar.selectbox("Select Category", list(menu.keys()))
 page = st.sidebar.radio("Navigate", menu[category])
 
 # -------------------- ROUTING --------------------
-if page == "Home":
-    show_home()
+page_files = {
+    "Home": "Home.py",
+    "Data Overview": "Data_Overview.py",
+    "Customer Segmentation": "Customer_Segmentation.py",
+    "Churn Prediction": "Churn_Prediction.py",
+    "Model Performance": "Model_Performance.py",
+    "Insights & Recommendations": "Insights_Recommendations.py",
+    "Business Insights": "Business_Insights.py",
+    "Business Helper": "Business_Helper.py",
+    "About Project": "About_Project.py",
+}
 
-elif page == "Data Overview":
-    show_data_overview()
-
-elif page == "Customer Segmentation":
-    show_segmentation()
-
-elif page == "Churn Prediction":
-    show_prediction()
-
-elif page == "Model Performance":
-    show_model_performance()
-
-elif page == "Insights & Recommendations":
-    show_insights()
-
-elif page == "Business Insights":
-    show_business_insights()
-
-elif page == "Business Helper":
-    show_business_helper()
-
-elif page == "About Project":
-    show_about()
+runpy.run_path(str(Path(__file__).parent / "pages" / page_files[page]))
