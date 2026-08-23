@@ -1,8 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import joblib
-from utils import DATA_PATH, load_model
+from utils import DATA_PATH, load_data as load_customer_data, load_model
 import matplotlib.pyplot as plt
 from sklearn.metrics import (
     accuracy_score, precision_score, recall_score, f1_score,
@@ -15,8 +14,7 @@ st.title("📊 Model Performance Evaluation")
 # -------------------- LOAD MODEL & DATA --------------------
 @st.cache_data
 def load_data():
-    df = pd.read_csv(DATA_PATH)
-    return df
+    return load_customer_data(DATA_PATH)
 
 @st.cache_resource
 def get_model():
@@ -26,31 +24,29 @@ model = get_model()
 df = load_data()
 
 # -------------------- PREPROCESS --------------------
-df_clean = df.copy()
-df_clean["TotalCharges"] = pd.to_numeric(df_clean["TotalCharges"], errors="coerce")
-df_clean.dropna(inplace=True)
-
-# Encode
-df_encoded = pd.get_dummies(df_clean, drop_first=True)
-
-# Split features/target
-X = df_encoded.drop("Churn_Yes", axis=1)
-y = df_encoded["Churn_Yes"]
+target = (df["Churn"] == "Yes").astype(int)
+features = df.drop(columns=["customerID", "Churn"])
+df_encoded = pd.get_dummies(features, drop_first=True)
 
 # Align with model
-X = X.reindex(columns=model.feature_names_in_, fill_value=0)
+X = df_encoded.reindex(columns=model.feature_names_in_, fill_value=0)
+y = target.loc[X.index]
 
 # Predictions
 y_pred = model.predict(X)
-y_prob = model.predict_proba(X)[:, 1]
+if hasattr(model, "predict_proba"):
+    y_prob = model.predict_proba(X)[:, 1]
+else:
+    decision_scores = model.decision_function(X)
+    y_prob = 1 / (1 + np.exp(-decision_scores))
 
 # -------------------- METRICS --------------------
 st.subheader("📌 Evaluation Metrics")
 
 acc = accuracy_score(y, y_pred)
-prec = precision_score(y, y_pred)
-rec = recall_score(y, y_pred)
-f1 = f1_score(y, y_pred)
+prec = precision_score(y, y_pred, zero_division=0)
+rec = recall_score(y, y_pred, zero_division=0)
+f1 = f1_score(y, y_pred, zero_division=0)
 
 col1, col2, col3, col4 = st.columns(4)
 col1.metric("Accuracy", f"{acc:.2f}")
